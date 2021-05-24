@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
         //recuperer le token dans le header autorization
         const token = req.headers.authorization.split(' ')[1];
         //decoder le token
-        const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET_KEY_ENV);
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         //extraire cette verification
         const userId = decodedToken.userId;
         if (req.body.userId && req.body.userId !== userId) {
@@ -16,7 +16,9 @@ module.exports = (req, res, next) => {
         } else {
             next();
         }
-    } catch (error) {
-        res.status(401).json({ error });
+    } catch {
+        res.status(401).json({ 
+            error: new Error('Requête non authentifiée') 
+        });
     }
 };
