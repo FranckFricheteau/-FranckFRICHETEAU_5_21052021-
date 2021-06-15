@@ -15,10 +15,10 @@ exports.signup = (req, res, next) => {
                 password: hash
             });
             user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(error => res.status(400).send('Utilisateur déjà existant !'));
+                .then(() => res.status(201).json({ message: 'Utilisateur créé !' })) // Création utilisateur, requête réussie code 200 OK
+                .catch(error => res.status(400).send('Utilisateur déjà existant !')); // Erreur Utilisateur déjà existant
         })
-        .catch(error => res.status(500).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' }));
+        .catch(error => res.status(500).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' })); // erreur serveur code 500
 };
 
 //Connexion des utilisateurs existants
@@ -26,12 +26,12 @@ exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
-                return res.status(400).send('Adresse mail inexistante !');
+                return res.status(400).send('Adresse mail inexistante !'); //Erreur adresse mail introuvable code 400
             }
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(400).send('Mot de passe incorrect !');
+                        return res.status(400).send('Mot de passe incorrect !'); //Erreur mot de passe invalide code 400
                     }
                     res.status(200).json({
                         userId: user._id,
@@ -44,8 +44,7 @@ exports.login = (req, res, next) => {
                     });
                 })
                 //si problème de connexion à mongodb
-                .catch(error => res.status(400).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' }));
+                .catch(error => res.status(500).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' }));
         })
-        //si problème de connexion à mongodb
-        .catch(error => res.status(404).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' }));
+
 };
