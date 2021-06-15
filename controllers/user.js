@@ -15,8 +15,8 @@ exports.signup = (req, res, next) => {
                 password: hash
             });
             user.save()
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' })) // Création utilisateur, requête réussie code 200 OK
-                .catch(error => res.status(400).send('Utilisateur déjà existant !')); // Erreur Utilisateur déjà existant
+                .then(() => res.status(201).json({ message: 'Utilisateur créé !' })) // Création utilisateur, requête réussie et ressource créée code 201 OK
+                .catch(error => res.status(400).send('Utilisateur déjà existant !')); // Erreur 400 Utilisateur déjà existant
         })
         .catch(error => res.status(500).json({ error: 'le serveur a rencontré un problème inattendu empêchant de répondre à la requête' })); // erreur serveur code 500
 };
@@ -33,7 +33,7 @@ exports.login = (req, res, next) => {
                     if (!valid) {
                         return res.status(400).send('Mot de passe incorrect !'); //Erreur mot de passe invalide code 400
                     }
-                    res.status(200).json({
+                    res.status(200).json({ // l'user est bien connecté code 200 OK
                         userId: user._id,
                         token: jwt.sign({ userId: user._id },
                             //clé secrète pour l'encodage 
