@@ -35,12 +35,12 @@ exports.findOneSauce = (req, res, next) => {
 //modifier une sauce existante
 exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ? //opérateur ternaire
-        //soit on modifie l'image si une nouvelle est fournie soit on modifie juste le corps de la requête
+        //soit l'image est modifiée si une nouvelle est fournie soit modification du corps de la requête
         {
             ...JSON.parse(req.body.sauce),
             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         } : {...req.body };
-    //premier argument indique quel sauce on veut modifier et le deuxième récupère les infos du body pour les attribuer au même id
+    //premier argument indique quelle sauce va être modifiée et le deuxième récupère les infos du body pour les attribuer au même id
     Sauce.updateOne({ _id: req.params.id }, {...sauceObject, _id: req.params.id })
         .then(() => res.status(200).json({ message: 'Sauce modifiée !' }))
         .catch(error => res.status(400).json({ error }));
@@ -50,7 +50,7 @@ exports.modifySauce = (req, res, next) => {
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
-            //on split le chemin de l'image pour récupérer le nom du fichier dans le dossier image
+            //split du chemin de l'image pour récupérer le nom du fichier dans le dossier image
             const filename = sauce.imageUrl.split('/images/')[1];
             //supprimer le fichier ayant ce filename
             fs.unlink(`images/${filename}`, () => {
