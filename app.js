@@ -6,9 +6,6 @@ const bodyParser = require('body-parser');
 //MongoDB object modeling tool
 const mongoose = require('mongoose');
 
-//Sur la base de données, MongoDB a des accès en lecture seule 
-var mongoMask = require('mongo-mask');
-
 //pour accéder au path de notre serveur
 const path = require('path');
 
