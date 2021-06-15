@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//pour plus facilement résoudre les erreurs générées par défaut par mongodb, on installe un paquet qui pré-valide les informations
+//pour plus facilement résoudre les erreurs générées par défaut par mongodb, installation du paquet mongoose-unique-validator qui pré-valide les informations
 const uniqueValidator = require('mongoose-unique-validator');
 
 
