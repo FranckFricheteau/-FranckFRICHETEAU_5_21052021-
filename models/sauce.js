@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Importer mongoose
 
 const sauceSchema = mongoose.Schema({
     userId: { type: String, required: true }, // identifiant unique MongoDB pour l'utilisateur qui a créé la sauce
@@ -14,4 +14,5 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: { type: [], required: false } //  tableau d'identifiants d'utilisateurs n'ayant pas aimé la sauce
 });
 
+//Importer le modèle
 module.exports = mongoose.model('Sauce', sauceSchema);
