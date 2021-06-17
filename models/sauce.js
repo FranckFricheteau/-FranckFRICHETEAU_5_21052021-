@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); // Importer mongoose
 
 const sauceSchema = mongoose.Schema({
-    userId: { type: String, required: true }, // identifiant unique MongoDB pour l'utilisateur qui a créé la sauce
+    userId: { type: String, required: true, unique: true }, // identifiant unique MongoDB pour l'utilisateur qui a créé la sauce
     name: { type: String, required: true }, //  nom de la sauce
     manufacturer: { type: String, required: true }, // fabricant de la sauce
     description: { type: String, required: true }, //  description de la sauce
