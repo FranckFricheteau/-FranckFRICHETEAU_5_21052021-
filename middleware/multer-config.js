@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
         //Appliquer une extension au fichier donc retour a la ligne 6 pour crée les extensions
         const extension = MIME_TYPES[file.mimetype];
 
-        //Appel de la callback, création du file name entier donc le name du dessus + date.now + un point + l'extension sdu fichier
+        //Appel de la callback, création du file name entier donc le name du dessus + date.now + un point + l'extension du fichier
         callback(null, name + Date.now() + '.' + extension);
     }
 });
