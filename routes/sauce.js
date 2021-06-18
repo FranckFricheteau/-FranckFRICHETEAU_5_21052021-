@@ -13,8 +13,8 @@ const multer = require('../middleware/multer-config');
 //Importer controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
-router.get('/', auth, sauceCtrl.findSauces) // trouver une sauce
-router.get('/:id', auth, sauceCtrl.findOneSauce) // trouver toutes les sauces
+router.get('/', auth, sauceCtrl.findSauces) // trouver toutes les sauces
+router.get('/:id', auth, sauceCtrl.findOneSauce) // trouver une sauce
 router.post('', auth, multer, sauceCtrl.createSauce); // créer une sauce
 router.put('/:id', auth, multer, sauceCtrl.modifySauce); // modifier une sauce
 router.delete('/:id', auth, sauceCtrl.deleteSauce); // supprimer une sauce
