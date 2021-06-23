@@ -4,8 +4,9 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 
 const userSchema = mongoose.Schema({
-    email: { type: String, required: true, unique: true }, //unique true bloque les utilisateurs essayant de s'inscrire avec la meme adresse
-    password: { type: String, required: true }
+    userId: { type: String, required: true, unique: true }, //Identifiant unique MongoDB pour l'utilisateur qui a créé la sauce
+    email: { type: String, required: true, unique: true }, //Adresse unique de l'utilisateur [unique]
+    password: { type: String, required: true } //Hachage du mot de passe pour l'utilisateur
 });
 
 //Apliquer le validator
