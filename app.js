@@ -19,6 +19,17 @@ const app = express();
 //Installation d'helmet
 app.use(helmet());
 
+//Rate Limit
+const rateLimit = require('express-rate-limit');
+
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes 
+    max: 15 // 15 essais max
+});
+
+//Appliquer uniquement sur le login
+app.use("/api/auth/login", apiLimiter);
+
 //import des routeurs dans l'application
 const userRoutes = require('./routes/user');
 const sauceRoutes = require('./routes/sauce');
