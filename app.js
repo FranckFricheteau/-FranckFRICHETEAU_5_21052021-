@@ -1,3 +1,4 @@
+//framework standard pour le développement de serveur en Node.js
 const express = require('express');
 
 //body-parser
@@ -9,8 +10,14 @@ const mongoose = require('mongoose');
 //pour accéder au path de notre serveur
 const path = require('path');
 
-//Initialiser dotenv pour les variables d'environnement
-require('dotenv').config()
+//Importation d'helmet
+const helmet = require("helmet");
+
+//pour créer une application express
+const app = express();
+
+//Installation d'helmet
+app.use(helmet());
 
 //import des routeurs dans l'application
 const userRoutes = require('./routes/user');
@@ -25,9 +32,6 @@ mongoose.connect('mongodb+srv://new-user-1:y6q7eeUXStMh6nt@cluster0.bsxcf.mongod
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-
-//pour créer une application express
-const app = express();
 
 //CORS
 app.use((req, res, next) => {
