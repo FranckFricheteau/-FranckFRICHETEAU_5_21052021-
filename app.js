@@ -1,9 +1,6 @@
 //framework standard pour le développement de serveur en Node.js
 const express = require('express');
 
-//body-parser
-const bodyParser = require('body-parser');
-
 //MongoDB object modeling tool
 const mongoose = require('mongoose');
 
@@ -52,8 +49,8 @@ app.use((req, res, next) => {
     next();
 });
 
-//middleware body-parser (deprecated)
-app.use(bodyParser.json());
+app.use(express.json());
+
 //gestionnaire de routage pour les images
 //__dirname: le dossier où l'on se trouve
 app.use('/images', express.static(path.join(__dirname, 'images')));
