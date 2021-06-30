@@ -68,7 +68,7 @@ exports.evaluateSauce = (req, res, next) => {
     if (req.body.like === 0) { //si like de la sauce = 0
         Sauce.findOne({ _id: req.params.id })
             .then((sauce) => {
-                if (sauce.usersLiked.find(user => user === req.body.userId)) { // si like de la sauce = 1
+                if (sauce.usersLiked.find(user => user === req.body.userId)) { // Mise à jour du tableau like 
                     Sauce.updateOne({ _id: req.params.id }, {
                             $inc: { likes: -1 },
                             $pull: { usersLiked: req.body.userId }
@@ -78,7 +78,7 @@ exports.evaluateSauce = (req, res, next) => {
                             res.status(400).json({ error })
                         });
                 }
-                if (sauce.usersDisliked.find(user => user === req.body.userId)) { // si dislike la sauce = 1
+                if (sauce.usersDisliked.find(user => user === req.body.userId)) { // Mise à jour du tableau dislike
                     Sauce.updateOne({ _id: req.params.id }, {
                             $inc: { dislikes: -1 },
                             $pull: { usersDisliked: req.body.userId }
@@ -92,7 +92,7 @@ exports.evaluateSauce = (req, res, next) => {
             .catch((error) => { res.status(400).json({ error }) });
     }
 
-    if (req.body.like === 1) { //like +1
+    if (req.body.like === 1) { //Mise à jour du nombre de like, like +1
         Sauce.updateOne({ _id: req.params.id }, {
                 $inc: { likes: 1 },
                 $push: { usersLiked: req.body.userId }
@@ -103,7 +103,7 @@ exports.evaluateSauce = (req, res, next) => {
             });
     }
 
-    if (req.body.like === -1) { //like -1
+    if (req.body.like === -1) { //Mise à jour du nombre de like, like -1
         Sauce.updateOne({ _id: req.params.id }, {
                 $inc: { dislikes: 1 },
                 $push: { usersDisliked: req.body.userId }
