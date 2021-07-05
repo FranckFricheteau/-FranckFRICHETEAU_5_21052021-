@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 //pour accéder au path de notre serveur
 const path = require('path');
 
-//Importation d'helmet, sécuriser l'application Express
+//Importation d'helmet, sécuriser l'application Express, Middleware style Connect compatible avec le framework Express
 const helmet = require("helmet");
 
 //pour créer une application express
