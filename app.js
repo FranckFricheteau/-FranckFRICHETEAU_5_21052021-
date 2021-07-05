@@ -7,16 +7,16 @@ const mongoose = require('mongoose');
 //pour accéder au path de notre serveur
 const path = require('path');
 
-//Importation d'helmet
+//Importation d'helmet, sécuriser l'application Express
 const helmet = require("helmet");
 
 //pour créer une application express
 const app = express();
 
-//Installation d'helmet
+//Installation d'helmet, entête HTTP helmet
 app.use(helmet());
 
-//Rate Limit
+//Rate Limit - Utiliser pour limiter les demandes répétées à l'API publique
 const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
@@ -24,7 +24,7 @@ const apiLimiter = rateLimit({
     max: 15 // 15 essais max
 });
 
-//Appliquer uniquement sur le login
+//Appliquer les demandes répétées uniquement sur le login
 app.use("/api/auth/login", apiLimiter);
 
 //import des routeurs dans l'application
