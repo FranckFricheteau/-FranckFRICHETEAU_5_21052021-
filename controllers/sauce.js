@@ -15,7 +15,7 @@ exports.createSauce = (req, res, next) => {
     });
     sauce.save()
         .then(() => res.status(201).json({ message: 'Sauce enregistrée!' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ message: 'Une sauce a déjà été enregistrée sur cette adresse mail!' }));
 };
 
 //afficher toutes les sauces
