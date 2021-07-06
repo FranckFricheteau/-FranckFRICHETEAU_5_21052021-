@@ -1,7 +1,7 @@
 //framework standard pour le développement de serveur en Node.js
 const express = require('express');
 
-//MongoDB object modeling tool
+//Importation de mongodb
 const mongoose = require('mongoose');
 
 //pour accéder au path de notre serveur
