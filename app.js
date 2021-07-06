@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 //pour accéder au path de notre serveur
 const path = require('path');
 
-//Importation d'helmet, sécuriser l'application Express, Middleware style Connect compatible avec le framework Express
+//Importation d'helmet, aide à sécuriser l'application Express, Middleware style Connect compatible avec le framework Express
 const helmet = require("helmet");
 
 //pour créer une application express
@@ -41,7 +41,7 @@ mongoose.connect('mongodb+srv://new-user-1:y6q7eeUXStMh6nt@cluster0.bsxcf.mongod
     .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 
-//CORS
+//CORS - Cross Origin Ressources Sharing - Partage des ressources entre origines multiples - Ajout d'entêtes HTTP pour accéder aux ressources d'un serveur situées sur une autre origine que le site courant provenant d'un domaine, port et protocole différent
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
