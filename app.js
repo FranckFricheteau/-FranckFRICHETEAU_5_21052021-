@@ -16,7 +16,7 @@ const app = express();
 //Installation d'helmet, entête HTTP helmet
 app.use(helmet());
 
-//Rate Limit - Utiliser pour limiter les demandes répétées à l'API publique
+//Rate Limit - Middleware de base à limitation de débit pour Express
 const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
@@ -24,7 +24,7 @@ const apiLimiter = rateLimit({
     max: 15 // 15 essais max
 });
 
-//Appliquer les demandes répétées uniquement sur le login
+//Limiter les demandes répétées à l'API uniquement sur le login
 app.use("/api/auth/login", apiLimiter);
 
 //import des routeurs dans l'application
